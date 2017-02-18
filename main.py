@@ -155,9 +155,9 @@ class Game:
                 if key[K_RIGHT] or key[K_LEFT] or key[K_DOWN] or key[K_UP]:
                     h = key[K_RIGHT] - key[K_LEFT]
                     v = key[K_DOWN] - key[K_UP]
-                    # リプレイ記録
+                    # Record replay
                     replay.write(h, v)
-                    # ゲーム進行
+                    # Game progress
                     self.update(h, v)
                 
             for e in pygame.event.get():
@@ -166,13 +166,12 @@ class Game:
                     replay.close()
                     sys.exit()
                 if keyPressed and self.waitForInitialInput:
+                    # Replay
                     if e.key == K_r:
-                        # リプレイ記録を開始する
-                        if replay.start(): # 判定と同時に実行する
+                        if replay.start():
                             pygame.draw.circle(screen, (255, 0, 0), (10, 10), 5, 0)
                             pygame.display.update()
                     elif e.key == K_p:
-                        # リプレイ再生を開始する
                         replay.play()
                     self.waitForInitialInput = False
                 if keyPressed and e.key == K_SPACE:
@@ -231,7 +230,8 @@ class Game:
     
     def enemy_spawn(self):
         if self.timeToSpawn < 0:
-            self.spawn_tobi() # Generate Tobi
+            # Generate Tobi
+            self.spawn_tobi()
             if self.spawnSpan < 0:
                 self.spawnSpan = MINIMUM_SPAWN_SPAN
             else:
@@ -251,7 +251,8 @@ class Game:
             Player.extended = True
             Player.point = 0
             self.level += 1
-            self.spawn_taka() # Generate Taka
+            # Generate Taka
+            self.spawn_taka()
             # SE
             SE_LEVEL_UP.play()
     
@@ -383,8 +384,10 @@ class Game:
         gridR = SCR_RECT[2] - MARGIN_X
         gridT = MARGIN_Y
         color = LIGHT_GRAY
-        y = 0 # Line header height
-        spacing = CELL*2 # Line spacing
+        # Line header height
+        y = 0
+        # Line spacing
+        spacing = CELL*2
         # level
         msg = " LEVEL"    
         s = GRID_FOR_CHAR*3 // 4
@@ -496,8 +499,10 @@ class Player(Anima):
         Player.pos = [0, 0]
         Player.vector = [0, 0]
         Player.point = 0
-        Player.objective = INITIAL_LEVEL # Initial objective
-        Player.life = INITIAL_LEVEL # Life limit equals to initial level
+        # Initial objective
+        Player.objective = INITIAL_LEVEL
+        # Life limit equals to initial level
+        Player.life = INITIAL_LEVEL
         Player.crossed = False
         Player.extended = False
     
@@ -575,7 +580,7 @@ class Enemy(Anima):
     def update_pos(self, target):
         for i in range(2):
             if self.pos[i] < target[i]:
-                self.vector[i] += 1        
+                self.vector[i] += 1
             if self.pos[i] > target[i]:
                 self.vector[i] -= 1
             if self.vector[i] >= self.speed:
@@ -612,8 +617,10 @@ class Gem:
     def __init__(self):
         self.pos = [0, 0]
         self.got = False
-        self.vers = ((-2, 0), (0, -2), (2, 0), (0, 2)) # shape
-        self.points = [] # Shape with grid position
+        # shape
+        self.vers = ((-2, 0), (0, -2), (2, 0), (0, 2))
+        # Shape with grid position
+        self.points = []
         self.spawn()
 
     def spawn(self):
