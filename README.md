@@ -1,3 +1,5 @@
+![](http://kuuri.net/game/kobato/img/progress_1.png)
+
 # KOBATO
 KOBATO is a simple action game developed with Python, Pygame.  
 Use the arrow keys to operate a red flying object and collect gems while avoiding enemies.
@@ -18,6 +20,8 @@ When you touch the gem that appear on the screen, the "acquired gems" (displayed
 Level (stage) will proceed as the number of acquired jewels reaches the prescribed number.
 At this time, the number of "acquired gems" will be reset and the number of acquisition orders will be increased by one.
 It is clear if you can proceed to level 10. (Score feature is not implemented.)
+
+![](http://kuuri.net/game/kobato/img/title.png)
 
 ### Other operations
 Other operations are as written on the game start screen.  
